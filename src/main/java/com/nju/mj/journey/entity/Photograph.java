@@ -1,8 +1,9 @@
 package com.nju.mj.journey.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Photograph {
+public class Photograph implements Serializable {
     private String id;
 
     private String imgpath;
@@ -20,6 +21,8 @@ public class Photograph {
     private Integer flag;
 
     private String desc;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -91,5 +94,25 @@ public class Photograph {
 
     public void setDesc(String desc) {
         this.desc = desc == null ? null : desc.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", imgpath=").append(imgpath);
+        sb.append(", imgname=").append(imgname);
+        sb.append(", userid=").append(userid);
+        sb.append(", journeyid=").append(journeyid);
+        sb.append(", createdat=").append(createdat);
+        sb.append(", updatedat=").append(updatedat);
+        sb.append(", flag=").append(flag);
+        sb.append(", desc=").append(desc);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

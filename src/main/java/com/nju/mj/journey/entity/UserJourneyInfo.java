@@ -1,6 +1,8 @@
 package com.nju.mj.journey.entity;
 
-public class UserJourneyInfo {
+import java.io.Serializable;
+
+public class UserJourneyInfo implements Serializable {
     private String id;
 
     private String journeyid;
@@ -10,6 +12,8 @@ public class UserJourneyInfo {
     private Integer type;
 
     private Integer ispublic;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -49,5 +53,21 @@ public class UserJourneyInfo {
 
     public void setIspublic(Integer ispublic) {
         this.ispublic = ispublic;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", journeyid=").append(journeyid);
+        sb.append(", userid=").append(userid);
+        sb.append(", type=").append(type);
+        sb.append(", ispublic=").append(ispublic);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

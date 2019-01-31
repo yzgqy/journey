@@ -2,7 +2,6 @@ package com.nju.mj.journey.dao;
 
 import com.nju.mj.journey.entity.Journey;
 import com.nju.mj.journey.entity.JourneyExample;
-import com.nju.mj.journey.entity.JourneyWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,25 +12,25 @@ public interface JourneyMapper {
 
     int deleteByPrimaryKey(String id);
 
-    int insert(JourneyWithBLOBs record);
+    int insert(Journey record);
 
-    int insertSelective(JourneyWithBLOBs record);
+    int insertSelective(Journey record);
 
-    List<JourneyWithBLOBs> selectByExampleWithBLOBs(JourneyExample example);
+    List<Journey> selectByExampleWithBLOBs(JourneyExample example);
 
     List<Journey> selectByExample(JourneyExample example);
 
-    JourneyWithBLOBs selectByPrimaryKey(String id);
+    Journey selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") JourneyWithBLOBs record, @Param("example") JourneyExample example);
+    int updateByExampleSelective(@Param("record") Journey record, @Param("example") JourneyExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") JourneyWithBLOBs record, @Param("example") JourneyExample example);
+    int updateByExampleWithBLOBs(@Param("record") Journey record, @Param("example") JourneyExample example);
 
     int updateByExample(@Param("record") Journey record, @Param("example") JourneyExample example);
 
-    int updateByPrimaryKeySelective(JourneyWithBLOBs record);
+    int updateByPrimaryKeySelective(Journey record);
 
-    int updateByPrimaryKeyWithBLOBs(JourneyWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(Journey record);
 
     int updateByPrimaryKey(Journey record);
 }

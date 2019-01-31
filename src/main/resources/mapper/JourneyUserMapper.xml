@@ -80,7 +80,7 @@
     avatar
   </sql>
   <sql id="Blob_Column_List" >
-    desc
+    `desc`
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyUserExample" >
     select
@@ -134,7 +134,7 @@
     insert into journey_user (id, nickname, birthday, 
       gender, phone, city, 
       school, creatdeAt, updatedAt, 
-      flag, avatar, desc
+      flag, avatar, `desc`
       )
     values (#{id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
       #{gender,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
@@ -179,7 +179,7 @@
         avatar,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -264,7 +264,7 @@
         avatar = #{record.avatar,jdbcType=VARCHAR},
       </if>
       <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=LONGVARCHAR},
+        `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -284,7 +284,7 @@
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       avatar = #{record.avatar,jdbcType=VARCHAR},
-      desc = #{record.desc,jdbcType=LONGVARCHAR}
+      `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -340,7 +340,7 @@
         avatar = #{avatar,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=LONGVARCHAR},
+        `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -357,7 +357,7 @@
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       avatar = #{avatar,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=LONGVARCHAR}
+      `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.JourneyUser" >

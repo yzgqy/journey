@@ -76,7 +76,7 @@
     id, imgPath, imgName, userId, journeyId, createdAt, updatedAt, flag
   </sql>
   <sql id="Blob_Column_List" >
-    desc
+    `desc`
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.PhotographExample" >
     select
@@ -129,7 +129,7 @@
   <insert id="insert" parameterType="com.nju.mj.journey.entity.Photograph" >
     insert into photograph (id, imgPath, imgName, 
       userId, journeyId, createdAt, 
-      updatedAt, flag, desc
+      updatedAt, flag, `desc`
       )
     values (#{id,jdbcType=VARCHAR}, #{imgpath,jdbcType=VARCHAR}, #{imgname,jdbcType=VARCHAR}, 
       #{userid,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, 
@@ -164,7 +164,7 @@
         flag,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -231,7 +231,7 @@
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
       <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=LONGVARCHAR},
+        `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -248,7 +248,7 @@
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
-      desc = #{record.desc,jdbcType=LONGVARCHAR}
+      `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -292,7 +292,7 @@
         flag = #{flag,jdbcType=INTEGER},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=LONGVARCHAR},
+        `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -306,7 +306,7 @@
       createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
-      desc = #{desc,jdbcType=LONGVARCHAR}
+      `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Photograph" >

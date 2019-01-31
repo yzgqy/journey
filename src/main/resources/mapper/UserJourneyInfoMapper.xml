@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, journeyId, userId, type, isPublic
+    id, journeyId, userId, `type`, isPublic
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.mj.journey.entity.UserJourneyInfoExample" >
     select
@@ -101,7 +101,7 @@
   </delete>
   <insert id="insert" parameterType="com.nju.mj.journey.entity.UserJourneyInfo" >
     insert into user_journey_info (id, journeyId, userId, 
-      type, isPublic)
+      `type`, isPublic)
     values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{ispublic,jdbcType=INTEGER})
   </insert>
@@ -118,7 +118,7 @@
         userId,
       </if>
       <if test="type != null" >
-        type,
+        `type`,
       </if>
       <if test="ispublic != null" >
         isPublic,
@@ -161,7 +161,7 @@
         userId = #{record.userid,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null" >
-        type = #{record.type,jdbcType=INTEGER},
+        `type` = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.ispublic != null" >
         isPublic = #{record.ispublic,jdbcType=INTEGER},
@@ -176,7 +176,7 @@
     set id = #{record.id,jdbcType=VARCHAR},
       journeyId = #{record.journeyid,jdbcType=VARCHAR},
       userId = #{record.userid,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=INTEGER},
       isPublic = #{record.ispublic,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +192,7 @@
         userId = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=INTEGER},
       </if>
       <if test="ispublic != null" >
         isPublic = #{ispublic,jdbcType=INTEGER},
@@ -204,7 +204,7 @@
     update user_journey_info
     set journeyId = #{journeyid,jdbcType=VARCHAR},
       userId = #{userid,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
       isPublic = #{ispublic,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>

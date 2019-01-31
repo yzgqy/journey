@@ -72,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, journeyId, startTime, endTime, activityName, isFinished, createdAt, updatedAt, 
-    state
+    `state`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.mj.journey.entity.SchedulingExample" >
     select
@@ -107,7 +107,7 @@
   <insert id="insert" parameterType="com.nju.mj.journey.entity.Scheduling" >
     insert into scheduling (id, journeyId, startTime, 
       endTime, activityName, isFinished, 
-      createdAt, updatedAt, state
+      createdAt, updatedAt, `state`
       )
     values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
       #{endtime,jdbcType=TIMESTAMP}, #{activityname,jdbcType=VARCHAR}, #{isfinished,jdbcType=INTEGER}, 
@@ -142,7 +142,7 @@
         updatedAt,
       </if>
       <if test="state != null" >
-        state,
+        `state`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -209,7 +209,7 @@
         updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
+        `state` = #{record.state,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -226,7 +226,7 @@
       isFinished = #{record.isfinished,jdbcType=INTEGER},
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=VARCHAR}
+      `state` = #{record.state,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,7 +256,7 @@
         updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
+        `state` = #{state,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -270,7 +270,7 @@
       isFinished = #{isfinished,jdbcType=INTEGER},
       createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=VARCHAR}
+      `state` = #{state,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

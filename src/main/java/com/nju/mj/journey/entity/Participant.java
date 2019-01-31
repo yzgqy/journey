@@ -1,8 +1,9 @@
 package com.nju.mj.journey.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Participant {
+public class Participant implements Serializable {
     private String id;
 
     private String journeyid;
@@ -22,6 +23,8 @@ public class Participant {
     private Date updatedat;
 
     private String desc;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -101,5 +104,26 @@ public class Participant {
 
     public void setDesc(String desc) {
         this.desc = desc == null ? null : desc.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", journeyid=").append(journeyid);
+        sb.append(", userid=").append(userid);
+        sb.append(", isarrived=").append(isarrived);
+        sb.append(", ishome=").append(ishome);
+        sb.append(", isconfirmed=").append(isconfirmed);
+        sb.append(", isinvited=").append(isinvited);
+        sb.append(", createat=").append(createat);
+        sb.append(", updatedat=").append(updatedat);
+        sb.append(", desc=").append(desc);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

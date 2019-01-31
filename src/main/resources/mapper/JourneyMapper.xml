@@ -17,7 +17,7 @@
     <result column="cover" property="cover" jdbcType="VARCHAR" />
     <result column="place" property="place" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.JourneyWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Journey" extends="BaseResultMap" >
     <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
     <result column="sponsorId" property="sponsorid" jdbcType="VARBINARY" />
   </resultMap>
@@ -84,7 +84,7 @@
     isPublic, isFind, cover, place
   </sql>
   <sql id="Blob_Column_List" >
-    desc, sponsorId
+    `desc`, sponsorId
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyExample" >
     select
@@ -134,12 +134,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+  <insert id="insert" parameterType="com.nju.mj.journey.entity.Journey" >
     insert into journey (id, theme, startTime, 
       endTime, assemblyPoint, money, 
       createdAt, updateAt, flag, 
       code, isPublic, isFind, 
-      cover, place, desc, 
+      cover, place, `desc`, 
       sponsorId)
     values (#{id,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
       #{endtime,jdbcType=TIMESTAMP}, #{assemblypoint,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
@@ -148,7 +148,7 @@
       #{cover,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}, 
       #{sponsorid,jdbcType=VARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Journey" >
     insert into journey
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -194,7 +194,7 @@
         place,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
       <if test="sponsorid != null" >
         sponsorId,
@@ -303,7 +303,7 @@
         place = #{record.place,jdbcType=VARCHAR},
       </if>
       <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=LONGVARCHAR},
+        `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
       <if test="record.sponsorid != null" >
         sponsorId = #{record.sponsorid,jdbcType=VARBINARY},
@@ -329,7 +329,7 @@
       isFind = #{record.isfind,jdbcType=INTEGER},
       cover = #{record.cover,jdbcType=VARCHAR},
       place = #{record.place,jdbcType=VARCHAR},
-      desc = #{record.desc,jdbcType=LONGVARCHAR},
+      `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       sponsorId = #{record.sponsorid,jdbcType=VARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -355,7 +355,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.Journey" >
     update journey
     <set >
       <if test="theme != null" >
@@ -398,7 +398,7 @@
         place = #{place,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=LONGVARCHAR},
+        `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
       <if test="sponsorid != null" >
         sponsorId = #{sponsorid,jdbcType=VARBINARY},
@@ -406,7 +406,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.Journey" >
     update journey
     set theme = #{theme,jdbcType=VARCHAR},
       startTime = #{starttime,jdbcType=TIMESTAMP},
@@ -421,7 +421,7 @@
       isFind = #{isfind,jdbcType=INTEGER},
       cover = #{cover,jdbcType=VARCHAR},
       place = #{place,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=LONGVARCHAR},
+      `desc` = #{desc,jdbcType=LONGVARCHAR},
       sponsorId = #{sponsorid,jdbcType=VARBINARY}
     where id = #{id,jdbcType=VARCHAR}
   </update>

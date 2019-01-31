@@ -77,7 +77,7 @@
     id, journeyId, userId, isArrived, isHome, isConfirmed, isInvited, createAt, updatedAt
   </sql>
   <sql id="Blob_Column_List" >
-    desc
+    `desc`
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.ParticipantExample" >
     select
@@ -131,7 +131,7 @@
     insert into participant (id, journeyId, userId, 
       isArrived, isHome, isConfirmed, 
       isInvited, createAt, updatedAt, 
-      desc)
+      `desc`)
     values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{isarrived,jdbcType=INTEGER}, #{ishome,jdbcType=INTEGER}, #{isconfirmed,jdbcType=INTEGER}, 
       #{isinvited,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
@@ -168,7 +168,7 @@
         updatedAt,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -241,7 +241,7 @@
         updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=LONGVARCHAR},
+        `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -259,7 +259,7 @@
       isInvited = #{record.isinvited,jdbcType=INTEGER},
       createAt = #{record.createat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
-      desc = #{record.desc,jdbcType=LONGVARCHAR}
+      `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -307,7 +307,7 @@
         updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=LONGVARCHAR},
+        `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -322,7 +322,7 @@
       isInvited = #{isinvited,jdbcType=INTEGER},
       createAt = #{createat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      desc = #{desc,jdbcType=LONGVARCHAR}
+      `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Participant" >

@@ -74,7 +74,7 @@
     id, journeyId, userId, pid, createdAt, flag
   </sql>
   <sql id="Blob_Column_List" >
-    comment
+    `comment`
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.CommentExample" >
     select
@@ -127,7 +127,7 @@
   <insert id="insert" parameterType="com.nju.mj.journey.entity.Comment" >
     insert into comment (id, journeyId, userId, 
       pid, createdAt, flag, 
-      comment)
+      `comment`)
     values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{pid,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, 
       #{comment,jdbcType=LONGVARCHAR})
@@ -154,7 +154,7 @@
         flag,
       </if>
       <if test="comment != null" >
-        comment,
+        `comment`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -209,7 +209,7 @@
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
       <if test="record.comment != null" >
-        comment = #{record.comment,jdbcType=LONGVARCHAR},
+        `comment` = #{record.comment,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -224,7 +224,7 @@
       pid = #{record.pid,jdbcType=VARCHAR},
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
-      comment = #{record.comment,jdbcType=LONGVARCHAR}
+      `comment` = #{record.comment,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -260,7 +260,7 @@
         flag = #{flag,jdbcType=INTEGER},
       </if>
       <if test="comment != null" >
-        comment = #{comment,jdbcType=LONGVARCHAR},
+        `comment` = #{comment,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -272,7 +272,7 @@
       pid = #{pid,jdbcType=VARCHAR},
       createdAt = #{createdat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
-      comment = #{comment,jdbcType=LONGVARCHAR}
+      `comment` = #{comment,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Comment" >

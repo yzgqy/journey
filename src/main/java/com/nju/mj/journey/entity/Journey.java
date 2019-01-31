@@ -1,8 +1,9 @@
 package com.nju.mj.journey.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Journey {
+public class Journey implements Serializable {
     private String id;
 
     private String theme;
@@ -30,6 +31,12 @@ public class Journey {
     private String cover;
 
     private String place;
+
+    private String desc;
+
+    private byte[] sponsorid;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -141,5 +148,48 @@ public class Journey {
 
     public void setPlace(String place) {
         this.place = place == null ? null : place.trim();
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc == null ? null : desc.trim();
+    }
+
+    public byte[] getSponsorid() {
+        return sponsorid;
+    }
+
+    public void setSponsorid(byte[] sponsorid) {
+        this.sponsorid = sponsorid;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", theme=").append(theme);
+        sb.append(", starttime=").append(starttime);
+        sb.append(", endtime=").append(endtime);
+        sb.append(", assemblypoint=").append(assemblypoint);
+        sb.append(", money=").append(money);
+        sb.append(", createdat=").append(createdat);
+        sb.append(", updateat=").append(updateat);
+        sb.append(", flag=").append(flag);
+        sb.append(", code=").append(code);
+        sb.append(", ispublic=").append(ispublic);
+        sb.append(", isfind=").append(isfind);
+        sb.append(", cover=").append(cover);
+        sb.append(", place=").append(place);
+        sb.append(", desc=").append(desc);
+        sb.append(", sponsorid=").append(sponsorid);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }
