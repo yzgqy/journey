@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nju.mj.journey.dao.ParticipantMapper" >
+  <resultMap id="BaseResultMap" type="com.nju.mj.journey.entity.Participant" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="journeyId" property="journeyid" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="isArrived" property="isarrived" jdbcType="INTEGER" />
+    <result column="isHome" property="ishome" jdbcType="INTEGER" />
+    <result column="isConfirmed" property="isconfirmed" jdbcType="INTEGER" />
+    <result column="isInvited" property="isinvited" jdbcType="INTEGER" />
+    <result column="createAt" property="createat" jdbcType="TIMESTAMP" />
+    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Participant" extends="BaseResultMap" >
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, journeyId, userId, isArrived, isHome, isConfirmed, isInvited, createAt, updatedAt
+  </sql>
+  <sql id="Blob_Column_List" >
+    desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.ParticipantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from participant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.mj.journey.entity.ParticipantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from participant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from participant
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from participant
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nju.mj.journey.entity.ParticipantExample" >
+    delete from participant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.nju.mj.journey.entity.Participant" >
+    insert into participant (id, journeyId, userId, 
+      isArrived, isHome, isConfirmed, 
+      isInvited, createAt, updatedAt, 
+      desc)
+    values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{isarrived,jdbcType=INTEGER}, #{ishome,jdbcType=INTEGER}, #{isconfirmed,jdbcType=INTEGER}, 
+      #{isinvited,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
+      #{desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Participant" >
+    insert into participant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="journeyid != null" >
+        journeyId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="isarrived != null" >
+        isArrived,
+      </if>
+      <if test="ishome != null" >
+        isHome,
+      </if>
+      <if test="isconfirmed != null" >
+        isConfirmed,
+      </if>
+      <if test="isinvited != null" >
+        isInvited,
+      </if>
+      <if test="createat != null" >
+        createAt,
+      </if>
+      <if test="updatedat != null" >
+        updatedAt,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="journeyid != null" >
+        #{journeyid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="isarrived != null" >
+        #{isarrived,jdbcType=INTEGER},
+      </if>
+      <if test="ishome != null" >
+        #{ishome,jdbcType=INTEGER},
+      </if>
+      <if test="isconfirmed != null" >
+        #{isconfirmed,jdbcType=INTEGER},
+      </if>
+      <if test="isinvited != null" >
+        #{isinvited,jdbcType=INTEGER},
+      </if>
+      <if test="createat != null" >
+        #{createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedat != null" >
+        #{updatedat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nju.mj.journey.entity.ParticipantExample" resultType="java.lang.Integer" >
+    select count(*) from participant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update participant
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.journeyid != null" >
+        journeyId = #{record.journeyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isarrived != null" >
+        isArrived = #{record.isarrived,jdbcType=INTEGER},
+      </if>
+      <if test="record.ishome != null" >
+        isHome = #{record.ishome,jdbcType=INTEGER},
+      </if>
+      <if test="record.isconfirmed != null" >
+        isConfirmed = #{record.isconfirmed,jdbcType=INTEGER},
+      </if>
+      <if test="record.isinvited != null" >
+        isInvited = #{record.isinvited,jdbcType=INTEGER},
+      </if>
+      <if test="record.createat != null" >
+        createAt = #{record.createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedat != null" >
+        updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update participant
+    set id = #{record.id,jdbcType=VARCHAR},
+      journeyId = #{record.journeyid,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      isArrived = #{record.isarrived,jdbcType=INTEGER},
+      isHome = #{record.ishome,jdbcType=INTEGER},
+      isConfirmed = #{record.isconfirmed,jdbcType=INTEGER},
+      isInvited = #{record.isinvited,jdbcType=INTEGER},
+      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
+      desc = #{record.desc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update participant
+    set id = #{record.id,jdbcType=VARCHAR},
+      journeyId = #{record.journeyid,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      isArrived = #{record.isarrived,jdbcType=INTEGER},
+      isHome = #{record.ishome,jdbcType=INTEGER},
+      isConfirmed = #{record.isconfirmed,jdbcType=INTEGER},
+      isInvited = #{record.isinvited,jdbcType=INTEGER},
+      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.Participant" >
+    update participant
+    <set >
+      <if test="journeyid != null" >
+        journeyId = #{journeyid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="isarrived != null" >
+        isArrived = #{isarrived,jdbcType=INTEGER},
+      </if>
+      <if test="ishome != null" >
+        isHome = #{ishome,jdbcType=INTEGER},
+      </if>
+      <if test="isconfirmed != null" >
+        isConfirmed = #{isconfirmed,jdbcType=INTEGER},
+      </if>
+      <if test="isinvited != null" >
+        isInvited = #{isinvited,jdbcType=INTEGER},
+      </if>
+      <if test="createat != null" >
+        createAt = #{createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedat != null" >
+        updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.Participant" >
+    update participant
+    set journeyId = #{journeyid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      isArrived = #{isarrived,jdbcType=INTEGER},
+      isHome = #{ishome,jdbcType=INTEGER},
+      isConfirmed = #{isconfirmed,jdbcType=INTEGER},
+      isInvited = #{isinvited,jdbcType=INTEGER},
+      createAt = #{createat,jdbcType=TIMESTAMP},
+      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Participant" >
+    update participant
+    set journeyId = #{journeyid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      isArrived = #{isarrived,jdbcType=INTEGER},
+      isHome = #{ishome,jdbcType=INTEGER},
+      isConfirmed = #{isconfirmed,jdbcType=INTEGER},
+      isInvited = #{isinvited,jdbcType=INTEGER},
+      createAt = #{createat,jdbcType=TIMESTAMP},
+      updatedAt = #{updatedat,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

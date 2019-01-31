@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nju.mj.journey.dao.JourneyMapper" >
+  <resultMap id="BaseResultMap" type="com.nju.mj.journey.entity.Journey" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="theme" property="theme" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="assemblyPoint" property="assemblypoint" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
+    <result column="updateAt" property="updateat" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="isPublic" property="ispublic" jdbcType="INTEGER" />
+    <result column="isFind" property="isfind" jdbcType="INTEGER" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.JourneyWithBLOBs" extends="BaseResultMap" >
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
+    <result column="sponsorId" property="sponsorid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, theme, startTime, endTime, assemblyPoint, money, createdAt, updateAt, flag, code, 
+    isPublic, isFind, cover, place
+  </sql>
+  <sql id="Blob_Column_List" >
+    desc, sponsorId
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.mj.journey.entity.JourneyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from journey
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from journey
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nju.mj.journey.entity.JourneyExample" >
+    delete from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+    insert into journey (id, theme, startTime, 
+      endTime, assemblyPoint, money, 
+      createdAt, updateAt, flag, 
+      code, isPublic, isFind, 
+      cover, place, desc, 
+      sponsorId)
+    values (#{id,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{assemblypoint,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{createdat,jdbcType=TIMESTAMP}, #{updateat,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{ispublic,jdbcType=INTEGER}, #{isfind,jdbcType=INTEGER}, 
+      #{cover,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}, 
+      #{sponsorid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+    insert into journey
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="assemblypoint != null" >
+        assemblyPoint,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="createdat != null" >
+        createdAt,
+      </if>
+      <if test="updateat != null" >
+        updateAt,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="ispublic != null" >
+        isPublic,
+      </if>
+      <if test="isfind != null" >
+        isFind,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="sponsorid != null" >
+        sponsorId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assemblypoint != null" >
+        #{assemblypoint,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="createdat != null" >
+        #{createdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateat != null" >
+        #{updateat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="isfind != null" >
+        #{isfind,jdbcType=INTEGER},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sponsorid != null" >
+        #{sponsorid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nju.mj.journey.entity.JourneyExample" resultType="java.lang.Integer" >
+    select count(*) from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update journey
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theme != null" >
+        theme = #{record.theme,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endTime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.assemblypoint != null" >
+        assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdat != null" >
+        createdAt = #{record.createdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateat != null" >
+        updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ispublic != null" >
+        isPublic = #{record.ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="record.isfind != null" >
+        isFind = #{record.isfind,jdbcType=INTEGER},
+      </if>
+      <if test="record.cover != null" >
+        cover = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.place != null" >
+        place = #{record.place,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.sponsorid != null" >
+        sponsorId = #{record.sponsorid,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update journey
+    set id = #{record.id,jdbcType=VARCHAR},
+      theme = #{record.theme,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      endTime = #{record.endtime,jdbcType=TIMESTAMP},
+      assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=INTEGER},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
+      updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      flag = #{record.flag,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      isPublic = #{record.ispublic,jdbcType=INTEGER},
+      isFind = #{record.isfind,jdbcType=INTEGER},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      place = #{record.place,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=LONGVARCHAR},
+      sponsorId = #{record.sponsorid,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update journey
+    set id = #{record.id,jdbcType=VARCHAR},
+      theme = #{record.theme,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      endTime = #{record.endtime,jdbcType=TIMESTAMP},
+      assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=INTEGER},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
+      updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      flag = #{record.flag,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      isPublic = #{record.ispublic,jdbcType=INTEGER},
+      isFind = #{record.isfind,jdbcType=INTEGER},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      place = #{record.place,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+    update journey
+    <set >
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assemblypoint != null" >
+        assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="createdat != null" >
+        createdAt = #{createdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateat != null" >
+        updateAt = #{updateat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        isPublic = #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="isfind != null" >
+        isFind = #{isfind,jdbcType=INTEGER},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sponsorid != null" >
+        sponsorId = #{sponsorid,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyWithBLOBs" >
+    update journey
+    set theme = #{theme,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
+      updateAt = #{updateat,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      isPublic = #{ispublic,jdbcType=INTEGER},
+      isFind = #{isfind,jdbcType=INTEGER},
+      cover = #{cover,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR},
+      sponsorId = #{sponsorid,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Journey" >
+    update journey
+    set theme = #{theme,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
+      updateAt = #{updateat,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      isPublic = #{ispublic,jdbcType=INTEGER},
+      isFind = #{isfind,jdbcType=INTEGER},
+      cover = #{cover,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
