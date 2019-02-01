@@ -1,6 +1,7 @@
 package com.nju.mj.journey.service;
 
 import com.nju.mj.journey.entity.Journey;
+import com.nju.mj.journey.entity.Participant;
 import com.nju.mj.journey.entity.Scheduling;
 import com.nju.mj.journey.entity.bean.JourneyBean;
 
@@ -14,4 +15,6 @@ public interface JourneyService {
     public List<Journey> findAllByCondition();
     public void confirmHome(String userId,String journeyId);
     public void confirmArrived(String userId,String journeyId);
+    public void confirm(String userId,String journeyId);
+//    public void addParticipant(Participant participant);
 }

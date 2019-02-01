@@ -20,7 +20,7 @@ public class Scheduling implements Serializable {
 
     private Date updatedat;
 
-    private String state;
+    private Integer state;
 
     private static final long serialVersionUID = 1L;
 
@@ -88,12 +88,12 @@ public class Scheduling implements Serializable {
         this.updatedat = updatedat;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state == null ? null : state.trim();
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     @Override

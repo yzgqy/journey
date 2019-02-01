@@ -6,10 +6,12 @@ import com.nju.mj.journey.service.UserService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private JourneyUserMapper journeyUserMapper;
@@ -29,16 +31,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatedUser(JourneyUser user) {
         user.setUpdatedat(new Date());
-        journeyUserMapper.updateByPrimaryKeyWithBLOBs(user);
+        journeyUserMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
     public JourneyUser findUserByUserId(String userId) {
         JourneyUser user = journeyUserMapper.selectByPrimaryKey(userId);
-        if (user.getFlag() == 0)
-            return null;
-        else
-            return user;
+        if (user != null) {
+            if (user.getFlag() == 0)
+                return null;
+        }
+        return user;
     }
 
 }
