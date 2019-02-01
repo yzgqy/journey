@@ -1,7 +1,6 @@
 package com.nju.mj.journey.service;
 
 import com.nju.mj.journey.entity.Journey;
-import com.nju.mj.journey.entity.Participant;
 import com.nju.mj.journey.entity.Scheduling;
 import com.nju.mj.journey.entity.bean.JourneyBean;
 

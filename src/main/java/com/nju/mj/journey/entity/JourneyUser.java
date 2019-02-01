@@ -26,6 +26,10 @@ public class JourneyUser implements Serializable {
 
     private String avatar;
 
+    private String openid;
+
+    private String sessionkey;
+
     private String desc;
 
     private static final long serialVersionUID = 1L;
@@ -118,6 +122,22 @@ public class JourneyUser implements Serializable {
         this.avatar = avatar == null ? null : avatar.trim();
     }
 
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
+    }
+
+    public String getSessionkey() {
+        return sessionkey;
+    }
+
+    public void setSessionkey(String sessionkey) {
+        this.sessionkey = sessionkey == null ? null : sessionkey.trim();
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -143,6 +163,8 @@ public class JourneyUser implements Serializable {
         sb.append(", updatedat=").append(updatedat);
         sb.append(", flag=").append(flag);
         sb.append(", avatar=").append(avatar);
+        sb.append(", openid=").append(openid);
+        sb.append(", sessionkey=").append(sessionkey);
         sb.append(", desc=").append(desc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

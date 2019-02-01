@@ -13,6 +13,8 @@
     <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="sessionKey" property="sessionkey" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.JourneyUser" extends="BaseResultMap" >
     <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
@@ -77,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, nickname, birthday, gender, phone, city, school, createdAt, updatedAt, flag, 
-    avatar
+    avatar, openid, sessionKey
   </sql>
   <sql id="Blob_Column_List" >
     `desc`
@@ -134,13 +136,13 @@
     insert into journey_user (id, nickname, birthday, 
       gender, phone, city, 
       school, createdAt, updatedAt, 
-      flag, avatar, `desc`
-      )
+      flag, avatar, openid, 
+      sessionKey, `desc`)
     values (#{id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
       #{gender,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{school,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
-      #{flag,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}
-      )
+      #{flag,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{sessionkey,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.JourneyUser" >
     insert into journey_user
@@ -177,6 +179,12 @@
       </if>
       <if test="avatar != null" >
         avatar,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="sessionkey != null" >
+        sessionKey,
       </if>
       <if test="desc != null" >
         `desc`,
@@ -215,6 +223,12 @@
       </if>
       <if test="avatar != null" >
         #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionkey != null" >
+        #{sessionkey,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
         #{desc,jdbcType=LONGVARCHAR},
@@ -263,6 +277,12 @@
       <if test="record.avatar != null" >
         avatar = #{record.avatar,jdbcType=VARCHAR},
       </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionkey != null" >
+        sessionKey = #{record.sessionkey,jdbcType=VARCHAR},
+      </if>
       <if test="record.desc != null" >
         `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
@@ -284,6 +304,8 @@
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       avatar = #{record.avatar,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      sessionKey = #{record.sessionkey,jdbcType=VARCHAR},
       `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -301,7 +323,9 @@
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
-      avatar = #{record.avatar,jdbcType=VARCHAR}
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      sessionKey = #{record.sessionkey,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -339,6 +363,12 @@
       <if test="avatar != null" >
         avatar = #{avatar,jdbcType=VARCHAR},
       </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionkey != null" >
+        sessionKey = #{sessionkey,jdbcType=VARCHAR},
+      </if>
       <if test="desc != null" >
         `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
@@ -357,6 +387,8 @@
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       avatar = #{avatar,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      sessionKey = #{sessionkey,jdbcType=VARCHAR},
       `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -371,7 +403,9 @@
       createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
-      avatar = #{avatar,jdbcType=VARCHAR}
+      avatar = #{avatar,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      sessionKey = #{sessionkey,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

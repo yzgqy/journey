@@ -28,4 +28,9 @@ public class UserController {
         JourneyUser journeyUser = userService.findUserByUserId(userId);
         return JSONResult.ok(journeyUser);
     }
+    @RequestMapping(value = "/user/openId/{openId}", method = RequestMethod.GET)
+    public JSONResult findUserByopenId(@PathVariable  String openId){
+        JourneyUser journeyUser = userService.findUserByOpenid(openId);
+        return JSONResult.ok(journeyUser);
+    }
 }
