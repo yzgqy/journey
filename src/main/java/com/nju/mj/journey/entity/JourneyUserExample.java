@@ -575,63 +575,63 @@ public class JourneyUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatIsNull() {
-            addCriterion("creatdeAt is null");
+        public Criteria andCreatedatIsNull() {
+            addCriterion("createdAt is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatIsNotNull() {
-            addCriterion("creatdeAt is not null");
+        public Criteria andCreatedatIsNotNull() {
+            addCriterion("createdAt is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatEqualTo(Date value) {
-            addCriterion("creatdeAt =", value, "creatdeat");
+        public Criteria andCreatedatEqualTo(Date value) {
+            addCriterion("createdAt =", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatNotEqualTo(Date value) {
-            addCriterion("creatdeAt <>", value, "creatdeat");
+        public Criteria andCreatedatNotEqualTo(Date value) {
+            addCriterion("createdAt <>", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatGreaterThan(Date value) {
-            addCriterion("creatdeAt >", value, "creatdeat");
+        public Criteria andCreatedatGreaterThan(Date value) {
+            addCriterion("createdAt >", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatGreaterThanOrEqualTo(Date value) {
-            addCriterion("creatdeAt >=", value, "creatdeat");
+        public Criteria andCreatedatGreaterThanOrEqualTo(Date value) {
+            addCriterion("createdAt >=", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatLessThan(Date value) {
-            addCriterion("creatdeAt <", value, "creatdeat");
+        public Criteria andCreatedatLessThan(Date value) {
+            addCriterion("createdAt <", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatLessThanOrEqualTo(Date value) {
-            addCriterion("creatdeAt <=", value, "creatdeat");
+        public Criteria andCreatedatLessThanOrEqualTo(Date value) {
+            addCriterion("createdAt <=", value, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatIn(List<Date> values) {
-            addCriterion("creatdeAt in", values, "creatdeat");
+        public Criteria andCreatedatIn(List<Date> values) {
+            addCriterion("createdAt in", values, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatNotIn(List<Date> values) {
-            addCriterion("creatdeAt not in", values, "creatdeat");
+        public Criteria andCreatedatNotIn(List<Date> values) {
+            addCriterion("createdAt not in", values, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatBetween(Date value1, Date value2) {
-            addCriterion("creatdeAt between", value1, value2, "creatdeat");
+        public Criteria andCreatedatBetween(Date value1, Date value2) {
+            addCriterion("createdAt between", value1, value2, "createdat");
             return (Criteria) this;
         }
 
-        public Criteria andCreatdeatNotBetween(Date value1, Date value2) {
-            addCriterion("creatdeAt not between", value1, value2, "creatdeat");
+        public Criteria andCreatedatNotBetween(Date value1, Date value2) {
+            addCriterion("createdAt not between", value1, value2, "createdat");
             return (Criteria) this;
         }
 

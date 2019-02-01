@@ -18,7 +18,7 @@ public class Participant implements Serializable {
 
     private Integer isinvited;
 
-    private Date createat;
+    private Date createdat;
 
     private Date updatedat;
 
@@ -82,12 +82,12 @@ public class Participant implements Serializable {
         this.isinvited = isinvited;
     }
 
-    public Date getCreateat() {
-        return createat;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
     }
 
     public Date getUpdatedat() {
@@ -119,7 +119,7 @@ public class Participant implements Serializable {
         sb.append(", ishome=").append(ishome);
         sb.append(", isconfirmed=").append(isconfirmed);
         sb.append(", isinvited=").append(isinvited);
-        sb.append(", createat=").append(createat);
+        sb.append(", createdat=").append(createdat);
         sb.append(", updatedat=").append(updatedat);
         sb.append(", desc=").append(desc);
         sb.append(", serialVersionUID=").append(serialVersionUID);

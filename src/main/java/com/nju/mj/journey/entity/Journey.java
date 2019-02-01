@@ -1,8 +1,9 @@
 package com.nju.mj.journey.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Journey {
+public class Journey implements Serializable {
     private String id;
 
     private String theme;
@@ -13,11 +14,13 @@ public class Journey {
 
     private String assemblypoint;
 
+    private String sponsorid;
+
     private Integer money;
 
     private Date createdat;
 
-    private Date updateat;
+    private Date updatedat;
 
     private Integer flag;
 
@@ -30,6 +33,10 @@ public class Journey {
     private String cover;
 
     private String place;
+
+    private String desc;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -71,6 +78,14 @@ public class Journey {
         this.assemblypoint = assemblypoint == null ? null : assemblypoint.trim();
     }
 
+    public String getSponsorid() {
+        return sponsorid;
+    }
+
+    public void setSponsorid(String sponsorid) {
+        this.sponsorid = sponsorid == null ? null : sponsorid.trim();
+    }
+
     public Integer getMoney() {
         return money;
     }
@@ -87,12 +102,12 @@ public class Journey {
         this.createdat = createdat;
     }
 
-    public Date getUpdateat() {
-        return updateat;
+    public Date getUpdatedat() {
+        return updatedat;
     }
 
-    public void setUpdateat(Date updateat) {
-        this.updateat = updateat;
+    public void setUpdatedat(Date updatedat) {
+        this.updatedat = updatedat;
     }
 
     public Integer getFlag() {
@@ -143,46 +158,38 @@ public class Journey {
         this.place = place == null ? null : place.trim();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public String getDesc() {
+        return desc;
+    }
 
-        Journey journey = (Journey) o;
-
-        if (id != null ? !id.equals(journey.id) : journey.id != null) return false;
-        if (theme != null ? !theme.equals(journey.theme) : journey.theme != null) return false;
-        if (starttime != null ? !starttime.equals(journey.starttime) : journey.starttime != null) return false;
-        if (endtime != null ? !endtime.equals(journey.endtime) : journey.endtime != null) return false;
-        if (assemblypoint != null ? !assemblypoint.equals(journey.assemblypoint) : journey.assemblypoint != null)
-            return false;
-        if (money != null ? !money.equals(journey.money) : journey.money != null) return false;
-        if (createdat != null ? !createdat.equals(journey.createdat) : journey.createdat != null) return false;
-        if (updateat != null ? !updateat.equals(journey.updateat) : journey.updateat != null) return false;
-        if (flag != null ? !flag.equals(journey.flag) : journey.flag != null) return false;
-        if (code != null ? !code.equals(journey.code) : journey.code != null) return false;
-        if (ispublic != null ? !ispublic.equals(journey.ispublic) : journey.ispublic != null) return false;
-        if (isfind != null ? !isfind.equals(journey.isfind) : journey.isfind != null) return false;
-        if (cover != null ? !cover.equals(journey.cover) : journey.cover != null) return false;
-        return place != null ? place.equals(journey.place) : journey.place == null;
+    public void setDesc(String desc) {
+        this.desc = desc == null ? null : desc.trim();
     }
 
     @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (theme != null ? theme.hashCode() : 0);
-        result = 31 * result + (starttime != null ? starttime.hashCode() : 0);
-        result = 31 * result + (endtime != null ? endtime.hashCode() : 0);
-        result = 31 * result + (assemblypoint != null ? assemblypoint.hashCode() : 0);
-        result = 31 * result + (money != null ? money.hashCode() : 0);
-        result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
-        result = 31 * result + (updateat != null ? updateat.hashCode() : 0);
-        result = 31 * result + (flag != null ? flag.hashCode() : 0);
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (ispublic != null ? ispublic.hashCode() : 0);
-        result = 31 * result + (isfind != null ? isfind.hashCode() : 0);
-        result = 31 * result + (cover != null ? cover.hashCode() : 0);
-        result = 31 * result + (place != null ? place.hashCode() : 0);
-        return result;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", theme=").append(theme);
+        sb.append(", starttime=").append(starttime);
+        sb.append(", endtime=").append(endtime);
+        sb.append(", assemblypoint=").append(assemblypoint);
+        sb.append(", sponsorid=").append(sponsorid);
+        sb.append(", money=").append(money);
+        sb.append(", createdat=").append(createdat);
+        sb.append(", updatedat=").append(updatedat);
+        sb.append(", flag=").append(flag);
+        sb.append(", code=").append(code);
+        sb.append(", ispublic=").append(ispublic);
+        sb.append(", isfind=").append(isfind);
+        sb.append(", cover=").append(cover);
+        sb.append(", place=").append(place);
+        sb.append(", desc=").append(desc);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

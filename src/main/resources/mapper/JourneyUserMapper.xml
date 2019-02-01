@@ -9,7 +9,7 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="school" property="school" jdbcType="VARCHAR" />
-    <result column="creatdeAt" property="creatdeat" jdbcType="TIMESTAMP" />
+    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
     <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, nickname, birthday, gender, phone, city, school, creatdeAt, updatedAt, flag, 
+    id, nickname, birthday, gender, phone, city, school, createdAt, updatedAt, flag, 
     avatar
   </sql>
   <sql id="Blob_Column_List" >
@@ -133,12 +133,12 @@
   <insert id="insert" parameterType="com.nju.mj.journey.entity.JourneyUser" >
     insert into journey_user (id, nickname, birthday, 
       gender, phone, city, 
-      school, creatdeAt, updatedAt, 
+      school, createdAt, updatedAt, 
       flag, avatar, `desc`
       )
     values (#{id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
       #{gender,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{school,jdbcType=VARCHAR}, #{creatdeat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
+      #{school,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
       #{flag,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -166,8 +166,8 @@
       <if test="school != null" >
         school,
       </if>
-      <if test="creatdeat != null" >
-        creatdeAt,
+      <if test="createdat != null" >
+        createdAt,
       </if>
       <if test="updatedat != null" >
         updatedAt,
@@ -204,8 +204,8 @@
       <if test="school != null" >
         #{school,jdbcType=VARCHAR},
       </if>
-      <if test="creatdeat != null" >
-        #{creatdeat,jdbcType=TIMESTAMP},
+      <if test="createdat != null" >
+        #{createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedat != null" >
         #{updatedat,jdbcType=TIMESTAMP},
@@ -251,8 +251,8 @@
       <if test="record.school != null" >
         school = #{record.school,jdbcType=VARCHAR},
       </if>
-      <if test="record.creatdeat != null" >
-        creatdeAt = #{record.creatdeat,jdbcType=TIMESTAMP},
+      <if test="record.createdat != null" >
+        createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedat != null" >
         updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
@@ -280,7 +280,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       school = #{record.school,jdbcType=VARCHAR},
-      creatdeAt = #{record.creatdeat,jdbcType=TIMESTAMP},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       avatar = #{record.avatar,jdbcType=VARCHAR},
@@ -298,7 +298,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       school = #{record.school,jdbcType=VARCHAR},
-      creatdeAt = #{record.creatdeat,jdbcType=TIMESTAMP},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       avatar = #{record.avatar,jdbcType=VARCHAR}
@@ -327,8 +327,8 @@
       <if test="school != null" >
         school = #{school,jdbcType=VARCHAR},
       </if>
-      <if test="creatdeat != null" >
-        creatdeAt = #{creatdeat,jdbcType=TIMESTAMP},
+      <if test="createdat != null" >
+        createdAt = #{createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedat != null" >
         updatedAt = #{updatedat,jdbcType=TIMESTAMP},
@@ -353,7 +353,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       school = #{school,jdbcType=VARCHAR},
-      creatdeAt = #{creatdeat,jdbcType=TIMESTAMP},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       avatar = #{avatar,jdbcType=VARCHAR},
@@ -368,7 +368,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       school = #{school,jdbcType=VARCHAR},
-      creatdeAt = #{creatdeat,jdbcType=TIMESTAMP},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       avatar = #{avatar,jdbcType=VARCHAR}

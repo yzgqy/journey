@@ -18,7 +18,7 @@ public class JourneyUser implements Serializable {
 
     private String school;
 
-    private Date creatdeat;
+    private Date createdat;
 
     private Date updatedat;
 
@@ -86,12 +86,12 @@ public class JourneyUser implements Serializable {
         this.school = school == null ? null : school.trim();
     }
 
-    public Date getCreatdeat() {
-        return creatdeat;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreatdeat(Date creatdeat) {
-        this.creatdeat = creatdeat;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
     }
 
     public Date getUpdatedat() {
@@ -139,7 +139,7 @@ public class JourneyUser implements Serializable {
         sb.append(", phone=").append(phone);
         sb.append(", city=").append(city);
         sb.append(", school=").append(school);
-        sb.append(", creatdeat=").append(creatdeat);
+        sb.append(", createdat=").append(createdat);
         sb.append(", updatedat=").append(updatedat);
         sb.append(", flag=").append(flag);
         sb.append(", avatar=").append(avatar);

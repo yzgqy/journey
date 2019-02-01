@@ -435,6 +435,76 @@ public class JourneyExample {
             return (Criteria) this;
         }
 
+        public Criteria andSponsoridIsNull() {
+            addCriterion("sponsorId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridIsNotNull() {
+            addCriterion("sponsorId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridEqualTo(String value) {
+            addCriterion("sponsorId =", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridNotEqualTo(String value) {
+            addCriterion("sponsorId <>", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridGreaterThan(String value) {
+            addCriterion("sponsorId >", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridGreaterThanOrEqualTo(String value) {
+            addCriterion("sponsorId >=", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridLessThan(String value) {
+            addCriterion("sponsorId <", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridLessThanOrEqualTo(String value) {
+            addCriterion("sponsorId <=", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridLike(String value) {
+            addCriterion("sponsorId like", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridNotLike(String value) {
+            addCriterion("sponsorId not like", value, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridIn(List<String> values) {
+            addCriterion("sponsorId in", values, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridNotIn(List<String> values) {
+            addCriterion("sponsorId not in", values, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridBetween(String value1, String value2) {
+            addCriterion("sponsorId between", value1, value2, "sponsorid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponsoridNotBetween(String value1, String value2) {
+            addCriterion("sponsorId not between", value1, value2, "sponsorid");
+            return (Criteria) this;
+        }
+
         public Criteria andMoneyIsNull() {
             addCriterion("money is null");
             return (Criteria) this;
@@ -555,63 +625,63 @@ public class JourneyExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatIsNull() {
-            addCriterion("updateAt is null");
+        public Criteria andUpdatedatIsNull() {
+            addCriterion("updatedAt is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatIsNotNull() {
-            addCriterion("updateAt is not null");
+        public Criteria andUpdatedatIsNotNull() {
+            addCriterion("updatedAt is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatEqualTo(Date value) {
-            addCriterion("updateAt =", value, "updateat");
+        public Criteria andUpdatedatEqualTo(Date value) {
+            addCriterion("updatedAt =", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatNotEqualTo(Date value) {
-            addCriterion("updateAt <>", value, "updateat");
+        public Criteria andUpdatedatNotEqualTo(Date value) {
+            addCriterion("updatedAt <>", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatGreaterThan(Date value) {
-            addCriterion("updateAt >", value, "updateat");
+        public Criteria andUpdatedatGreaterThan(Date value) {
+            addCriterion("updatedAt >", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatGreaterThanOrEqualTo(Date value) {
-            addCriterion("updateAt >=", value, "updateat");
+        public Criteria andUpdatedatGreaterThanOrEqualTo(Date value) {
+            addCriterion("updatedAt >=", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatLessThan(Date value) {
-            addCriterion("updateAt <", value, "updateat");
+        public Criteria andUpdatedatLessThan(Date value) {
+            addCriterion("updatedAt <", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatLessThanOrEqualTo(Date value) {
-            addCriterion("updateAt <=", value, "updateat");
+        public Criteria andUpdatedatLessThanOrEqualTo(Date value) {
+            addCriterion("updatedAt <=", value, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatIn(List<Date> values) {
-            addCriterion("updateAt in", values, "updateat");
+        public Criteria andUpdatedatIn(List<Date> values) {
+            addCriterion("updatedAt in", values, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatNotIn(List<Date> values) {
-            addCriterion("updateAt not in", values, "updateat");
+        public Criteria andUpdatedatNotIn(List<Date> values) {
+            addCriterion("updatedAt not in", values, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatBetween(Date value1, Date value2) {
-            addCriterion("updateAt between", value1, value2, "updateat");
+        public Criteria andUpdatedatBetween(Date value1, Date value2) {
+            addCriterion("updatedAt between", value1, value2, "updatedat");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateatNotBetween(Date value1, Date value2) {
-            addCriterion("updateAt not between", value1, value2, "updateat");
+        public Criteria andUpdatedatNotBetween(Date value1, Date value2) {
+            addCriterion("updatedAt not between", value1, value2, "updatedat");
             return (Criteria) this;
         }
 

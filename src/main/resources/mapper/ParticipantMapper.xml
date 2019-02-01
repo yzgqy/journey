@@ -9,7 +9,7 @@
     <result column="isHome" property="ishome" jdbcType="INTEGER" />
     <result column="isConfirmed" property="isconfirmed" jdbcType="INTEGER" />
     <result column="isInvited" property="isinvited" jdbcType="INTEGER" />
-    <result column="createAt" property="createat" jdbcType="TIMESTAMP" />
+    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
     <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Participant" extends="BaseResultMap" >
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, journeyId, userId, isArrived, isHome, isConfirmed, isInvited, createAt, updatedAt
+    id, journeyId, userId, isArrived, isHome, isConfirmed, isInvited, createdAt, updatedAt
   </sql>
   <sql id="Blob_Column_List" >
     `desc`
@@ -130,11 +130,11 @@
   <insert id="insert" parameterType="com.nju.mj.journey.entity.Participant" >
     insert into participant (id, journeyId, userId, 
       isArrived, isHome, isConfirmed, 
-      isInvited, createAt, updatedAt, 
+      isInvited, createdAt, updatedAt, 
       `desc`)
     values (#{id,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
       #{isarrived,jdbcType=INTEGER}, #{ishome,jdbcType=INTEGER}, #{isconfirmed,jdbcType=INTEGER}, 
-      #{isinvited,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
+      #{isinvited,jdbcType=INTEGER}, #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
       #{desc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Participant" >
@@ -161,8 +161,8 @@
       <if test="isinvited != null" >
         isInvited,
       </if>
-      <if test="createat != null" >
-        createAt,
+      <if test="createdat != null" >
+        createdAt,
       </if>
       <if test="updatedat != null" >
         updatedAt,
@@ -193,8 +193,8 @@
       <if test="isinvited != null" >
         #{isinvited,jdbcType=INTEGER},
       </if>
-      <if test="createat != null" >
-        #{createat,jdbcType=TIMESTAMP},
+      <if test="createdat != null" >
+        #{createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedat != null" >
         #{updatedat,jdbcType=TIMESTAMP},
@@ -234,8 +234,8 @@
       <if test="record.isinvited != null" >
         isInvited = #{record.isinvited,jdbcType=INTEGER},
       </if>
-      <if test="record.createat != null" >
-        createAt = #{record.createat,jdbcType=TIMESTAMP},
+      <if test="record.createdat != null" >
+        createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedat != null" >
         updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
@@ -257,7 +257,7 @@
       isHome = #{record.ishome,jdbcType=INTEGER},
       isConfirmed = #{record.isconfirmed,jdbcType=INTEGER},
       isInvited = #{record.isinvited,jdbcType=INTEGER},
-      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -273,7 +273,7 @@
       isHome = #{record.ishome,jdbcType=INTEGER},
       isConfirmed = #{record.isconfirmed,jdbcType=INTEGER},
       isInvited = #{record.isinvited,jdbcType=INTEGER},
-      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -300,8 +300,8 @@
       <if test="isinvited != null" >
         isInvited = #{isinvited,jdbcType=INTEGER},
       </if>
-      <if test="createat != null" >
-        createAt = #{createat,jdbcType=TIMESTAMP},
+      <if test="createdat != null" >
+        createdAt = #{createdat,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedat != null" >
         updatedAt = #{updatedat,jdbcType=TIMESTAMP},
@@ -320,7 +320,7 @@
       isHome = #{ishome,jdbcType=INTEGER},
       isConfirmed = #{isconfirmed,jdbcType=INTEGER},
       isInvited = #{isinvited,jdbcType=INTEGER},
-      createAt = #{createat,jdbcType=TIMESTAMP},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
@@ -333,7 +333,7 @@
       isHome = #{ishome,jdbcType=INTEGER},
       isConfirmed = #{isconfirmed,jdbcType=INTEGER},
       isInvited = #{isinvited,jdbcType=INTEGER},
-      createAt = #{createat,jdbcType=TIMESTAMP},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
       updatedAt = #{updatedat,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>

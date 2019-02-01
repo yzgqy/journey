@@ -26,7 +26,7 @@ public class TestController {
         String id = sid.nextShort();
         JourneyUser user = new JourneyUser();
         user.setCity("yz");
-        user.setCreatdeat(new Date());
+        user.setCreatedat(new Date());
         user.setNickname("gqy");
         user.setUpdatedat(new Date());
         user.setFlag(1);

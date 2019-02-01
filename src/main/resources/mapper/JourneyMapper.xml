@@ -7,9 +7,10 @@
     <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
     <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="assemblyPoint" property="assemblypoint" jdbcType="VARCHAR" />
+    <result column="sponsorId" property="sponsorid" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="INTEGER" />
     <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
-    <result column="updateAt" property="updateat" jdbcType="TIMESTAMP" />
+    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="isPublic" property="ispublic" jdbcType="INTEGER" />
@@ -19,7 +20,6 @@
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Journey" extends="BaseResultMap" >
     <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
-    <result column="sponsorId" property="sponsorid" jdbcType="VARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -80,11 +80,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, theme, startTime, endTime, assemblyPoint, money, createdAt, updateAt, flag, code, 
-    isPublic, isFind, cover, place
+    id, theme, startTime, endTime, assemblyPoint, sponsorId, money, createdAt, updatedAt, 
+    flag, code, isPublic, isFind, cover, place
   </sql>
   <sql id="Blob_Column_List" >
-    `desc`, sponsorId
+    `desc`
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.JourneyExample" >
     select
@@ -136,17 +136,17 @@
   </delete>
   <insert id="insert" parameterType="com.nju.mj.journey.entity.Journey" >
     insert into journey (id, theme, startTime, 
-      endTime, assemblyPoint, money, 
-      createdAt, updateAt, flag, 
-      code, isPublic, isFind, 
-      cover, place, `desc`, 
-      sponsorId)
+      endTime, assemblyPoint, sponsorId, 
+      money, createdAt, updatedAt, 
+      flag, code, isPublic, 
+      isFind, cover, place, 
+      `desc`)
     values (#{id,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
-      #{endtime,jdbcType=TIMESTAMP}, #{assemblypoint,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
-      #{createdat,jdbcType=TIMESTAMP}, #{updateat,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, 
-      #{code,jdbcType=VARCHAR}, #{ispublic,jdbcType=INTEGER}, #{isfind,jdbcType=INTEGER}, 
-      #{cover,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}, 
-      #{sponsorid,jdbcType=VARBINARY})
+      #{endtime,jdbcType=TIMESTAMP}, #{assemblypoint,jdbcType=VARCHAR}, #{sponsorid,jdbcType=VARCHAR}, 
+      #{money,jdbcType=INTEGER}, #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{ispublic,jdbcType=INTEGER}, 
+      #{isfind,jdbcType=INTEGER}, #{cover,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Journey" >
     insert into journey
@@ -166,14 +166,17 @@
       <if test="assemblypoint != null" >
         assemblyPoint,
       </if>
+      <if test="sponsorid != null" >
+        sponsorId,
+      </if>
       <if test="money != null" >
         money,
       </if>
       <if test="createdat != null" >
         createdAt,
       </if>
-      <if test="updateat != null" >
-        updateAt,
+      <if test="updatedat != null" >
+        updatedAt,
       </if>
       <if test="flag != null" >
         flag,
@@ -196,9 +199,6 @@
       <if test="desc != null" >
         `desc`,
       </if>
-      <if test="sponsorid != null" >
-        sponsorId,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -216,14 +216,17 @@
       <if test="assemblypoint != null" >
         #{assemblypoint,jdbcType=VARCHAR},
       </if>
+      <if test="sponsorid != null" >
+        #{sponsorid,jdbcType=VARCHAR},
+      </if>
       <if test="money != null" >
         #{money,jdbcType=INTEGER},
       </if>
       <if test="createdat != null" >
         #{createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateat != null" >
-        #{updateat,jdbcType=TIMESTAMP},
+      <if test="updatedat != null" >
+        #{updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="flag != null" >
         #{flag,jdbcType=INTEGER},
@@ -245,9 +248,6 @@
       </if>
       <if test="desc != null" >
         #{desc,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="sponsorid != null" >
-        #{sponsorid,jdbcType=VARBINARY},
       </if>
     </trim>
   </insert>
@@ -275,14 +275,17 @@
       <if test="record.assemblypoint != null" >
         assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
       </if>
+      <if test="record.sponsorid != null" >
+        sponsorId = #{record.sponsorid,jdbcType=VARCHAR},
+      </if>
       <if test="record.money != null" >
         money = #{record.money,jdbcType=INTEGER},
       </if>
       <if test="record.createdat != null" >
         createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateat != null" >
-        updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      <if test="record.updatedat != null" >
+        updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="record.flag != null" >
         flag = #{record.flag,jdbcType=INTEGER},
@@ -305,9 +308,6 @@
       <if test="record.desc != null" >
         `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
-      <if test="record.sponsorid != null" >
-        sponsorId = #{record.sponsorid,jdbcType=VARBINARY},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -320,17 +320,17 @@
       startTime = #{record.starttime,jdbcType=TIMESTAMP},
       endTime = #{record.endtime,jdbcType=TIMESTAMP},
       assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
+      sponsorId = #{record.sponsorid,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=INTEGER},
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
-      updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       isPublic = #{record.ispublic,jdbcType=INTEGER},
       isFind = #{record.isfind,jdbcType=INTEGER},
       cover = #{record.cover,jdbcType=VARCHAR},
       place = #{record.place,jdbcType=VARCHAR},
-      `desc` = #{record.desc,jdbcType=LONGVARCHAR},
-      sponsorId = #{record.sponsorid,jdbcType=VARBINARY}
+      `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -342,9 +342,10 @@
       startTime = #{record.starttime,jdbcType=TIMESTAMP},
       endTime = #{record.endtime,jdbcType=TIMESTAMP},
       assemblyPoint = #{record.assemblypoint,jdbcType=VARCHAR},
+      sponsorId = #{record.sponsorid,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=INTEGER},
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
-      updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       isPublic = #{record.ispublic,jdbcType=INTEGER},
@@ -370,14 +371,17 @@
       <if test="assemblypoint != null" >
         assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
       </if>
+      <if test="sponsorid != null" >
+        sponsorId = #{sponsorid,jdbcType=VARCHAR},
+      </if>
       <if test="money != null" >
         money = #{money,jdbcType=INTEGER},
       </if>
       <if test="createdat != null" >
         createdAt = #{createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateat != null" >
-        updateAt = #{updateat,jdbcType=TIMESTAMP},
+      <if test="updatedat != null" >
+        updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       </if>
       <if test="flag != null" >
         flag = #{flag,jdbcType=INTEGER},
@@ -400,9 +404,6 @@
       <if test="desc != null" >
         `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
-      <if test="sponsorid != null" >
-        sponsorId = #{sponsorid,jdbcType=VARBINARY},
-      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -412,17 +413,17 @@
       startTime = #{starttime,jdbcType=TIMESTAMP},
       endTime = #{endtime,jdbcType=TIMESTAMP},
       assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
+      sponsorId = #{sponsorid,jdbcType=VARCHAR},
       money = #{money,jdbcType=INTEGER},
       createdAt = #{createdat,jdbcType=TIMESTAMP},
-      updateAt = #{updateat,jdbcType=TIMESTAMP},
+      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       code = #{code,jdbcType=VARCHAR},
       isPublic = #{ispublic,jdbcType=INTEGER},
       isFind = #{isfind,jdbcType=INTEGER},
       cover = #{cover,jdbcType=VARCHAR},
       place = #{place,jdbcType=VARCHAR},
-      `desc` = #{desc,jdbcType=LONGVARCHAR},
-      sponsorId = #{sponsorid,jdbcType=VARBINARY}
+      `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Journey" >
@@ -431,9 +432,10 @@
       startTime = #{starttime,jdbcType=TIMESTAMP},
       endTime = #{endtime,jdbcType=TIMESTAMP},
       assemblyPoint = #{assemblypoint,jdbcType=VARCHAR},
+      sponsorId = #{sponsorid,jdbcType=VARCHAR},
       money = #{money,jdbcType=INTEGER},
       createdAt = #{createdat,jdbcType=TIMESTAMP},
-      updateAt = #{updateat,jdbcType=TIMESTAMP},
+      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER},
       code = #{code,jdbcType=VARCHAR},
       isPublic = #{ispublic,jdbcType=INTEGER},
