@@ -25,4 +25,10 @@ public class ParticipantController {
         List<Participant> participants =participantService.findByCondition(userId,journeyId);
         return JSONResult.ok(participants);
     }
+
+    @RequestMapping(value = "/participant/{id}", method = RequestMethod.DELETE)
+    public JSONResult deleteById(@PathVariable String id) {
+        participantService.deleteById(id);
+        return JSONResult.ok();
+    }
 }

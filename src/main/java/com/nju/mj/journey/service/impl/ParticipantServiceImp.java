@@ -43,4 +43,10 @@ public class ParticipantServiceImp implements ParticipantService {
         List<Participant> participants = participantMapper.selectByExampleWithBLOBs(participantExample);
         return participants;
     }
+
+    @Override
+    public void deleteById(String participant) {
+        participantMapper.deleteByPrimaryKey(participant);
+
+    }
 }
