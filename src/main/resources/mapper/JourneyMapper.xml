@@ -17,6 +17,8 @@
     <result column="isFind" property="isfind" jdbcType="INTEGER" />
     <result column="cover" property="cover" jdbcType="VARCHAR" />
     <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Journey" extends="BaseResultMap" >
     <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
@@ -81,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, theme, startTime, endTime, assemblyPoint, sponsorId, money, createdAt, updatedAt, 
-    flag, code, isPublic, isFind, cover, place
+    flag, code, isPublic, isFind, cover, place, latitude, longitude
   </sql>
   <sql id="Blob_Column_List" >
     `desc`
@@ -140,13 +142,15 @@
       money, createdAt, updatedAt, 
       flag, code, isPublic, 
       isFind, cover, place, 
-      `desc`)
+      latitude, longitude, `desc`
+      )
     values (#{id,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
       #{endtime,jdbcType=TIMESTAMP}, #{assemblypoint,jdbcType=VARCHAR}, #{sponsorid,jdbcType=VARCHAR}, 
       #{money,jdbcType=INTEGER}, #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, 
       #{flag,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{ispublic,jdbcType=INTEGER}, 
       #{isfind,jdbcType=INTEGER}, #{cover,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
-      #{desc,jdbcType=LONGVARCHAR})
+      #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Journey" >
     insert into journey
@@ -195,6 +199,12 @@
       </if>
       <if test="place != null" >
         place,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
       </if>
       <if test="desc != null" >
         `desc`,
@@ -245,6 +255,12 @@
       </if>
       <if test="place != null" >
         #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
         #{desc,jdbcType=LONGVARCHAR},
@@ -305,6 +321,12 @@
       <if test="record.place != null" >
         place = #{record.place,jdbcType=VARCHAR},
       </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
       <if test="record.desc != null" >
         `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
@@ -330,6 +352,8 @@
       isFind = #{record.isfind,jdbcType=INTEGER},
       cover = #{record.cover,jdbcType=VARCHAR},
       place = #{record.place,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR},
       `desc` = #{record.desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -351,7 +375,9 @@
       isPublic = #{record.ispublic,jdbcType=INTEGER},
       isFind = #{record.isfind,jdbcType=INTEGER},
       cover = #{record.cover,jdbcType=VARCHAR},
-      place = #{record.place,jdbcType=VARCHAR}
+      place = #{record.place,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -401,6 +427,12 @@
       <if test="place != null" >
         place = #{place,jdbcType=VARCHAR},
       </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
       <if test="desc != null" >
         `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
@@ -423,6 +455,8 @@
       isFind = #{isfind,jdbcType=INTEGER},
       cover = #{cover,jdbcType=VARCHAR},
       place = #{place,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
       `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -441,7 +475,9 @@
       isPublic = #{ispublic,jdbcType=INTEGER},
       isFind = #{isfind,jdbcType=INTEGER},
       cover = #{cover,jdbcType=VARCHAR},
-      place = #{place,jdbcType=VARCHAR}
+      place = #{place,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

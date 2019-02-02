@@ -34,6 +34,10 @@ public class Journey implements Serializable {
 
     private String place;
 
+    private String latitude;
+
+    private String longitude;
+
     private String desc;
 
     private static final long serialVersionUID = 1L;
@@ -158,6 +162,22 @@ public class Journey implements Serializable {
         this.place = place == null ? null : place.trim();
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude == null ? null : latitude.trim();
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude == null ? null : longitude.trim();
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -187,6 +207,8 @@ public class Journey implements Serializable {
         sb.append(", isfind=").append(isfind);
         sb.append(", cover=").append(cover);
         sb.append(", place=").append(place);
+        sb.append(", latitude=").append(latitude);
+        sb.append(", longitude=").append(longitude);
         sb.append(", desc=").append(desc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

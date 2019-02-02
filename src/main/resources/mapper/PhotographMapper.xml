@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nju.mj.journey.dao.PhotographMapper">
-  <resultMap id="BaseResultMap" type="com.nju.mj.journey.entity.Photograph">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="imgPath" jdbcType="VARCHAR" property="imgpath" />
-    <result column="imgName" jdbcType="VARCHAR" property="imgname" />
-    <result column="userId" jdbcType="VARCHAR" property="userid" />
-    <result column="journeyId" jdbcType="VARCHAR" property="journeyid" />
-    <result column="createdAt" jdbcType="TIMESTAMP" property="createdat" />
-    <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedat" />
-    <result column="flag" jdbcType="INTEGER" property="flag" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nju.mj.journey.dao.PhotographMapper" >
+  <resultMap id="BaseResultMap" type="com.nju.mj.journey.entity.Photograph" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="imgPath" property="imgpath" jdbcType="VARCHAR" />
+    <result column="imgName" property="imgname" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="journeyId" property="journeyid" jdbcType="VARCHAR" />
+    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
+    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Photograph">
-    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+  <resultMap id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Photograph" extends="BaseResultMap" >
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -43,25 +43,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -72,43 +72,43 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, imgPath, imgName, userId, journeyId, createdAt, updatedAt, flag
   </sql>
-  <sql id="Blob_Column_List">
+  <sql id="Blob_Column_List" >
     `desc`
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.nju.mj.journey.entity.PhotographExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nju.mj.journey.entity.PhotographExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from photograph
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.mj.journey.entity.PhotographExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from photograph
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -116,17 +116,17 @@
     from photograph
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from photograph
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.nju.mj.journey.entity.PhotographExample">
+  <delete id="deleteByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" >
     delete from photograph
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nju.mj.journey.entity.Photograph">
+  <insert id="insert" parameterType="com.nju.mj.journey.entity.Photograph" >
     insert into photograph (id, imgPath, imgName, 
       userId, journeyId, createdAt, 
       updatedAt, flag, `desc`
@@ -136,109 +136,109 @@
       #{updatedat,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{desc,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Photograph">
+  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Photograph" >
     insert into photograph
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
       </if>
-      <if test="imgpath != null">
+      <if test="imgpath != null" >
         imgPath,
       </if>
-      <if test="imgname != null">
+      <if test="imgname != null" >
         imgName,
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         userId,
       </if>
-      <if test="journeyid != null">
+      <if test="journeyid != null" >
         journeyId,
       </if>
-      <if test="createdat != null">
+      <if test="createdat != null" >
         createdAt,
       </if>
-      <if test="updatedat != null">
+      <if test="updatedat != null" >
         updatedAt,
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         flag,
       </if>
-      <if test="desc != null">
+      <if test="desc != null" >
         `desc`,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="imgpath != null">
+      <if test="imgpath != null" >
         #{imgpath,jdbcType=VARCHAR},
       </if>
-      <if test="imgname != null">
+      <if test="imgname != null" >
         #{imgname,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         #{userid,jdbcType=VARCHAR},
       </if>
-      <if test="journeyid != null">
+      <if test="journeyid != null" >
         #{journeyid,jdbcType=VARCHAR},
       </if>
-      <if test="createdat != null">
+      <if test="createdat != null" >
         #{createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedat != null">
+      <if test="updatedat != null" >
         #{updatedat,jdbcType=TIMESTAMP},
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         #{flag,jdbcType=INTEGER},
       </if>
-      <if test="desc != null">
+      <if test="desc != null" >
         #{desc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" resultType="java.lang.Integer" >
     select count(*) from photograph
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update photograph
-    <set>
-      <if test="record.id != null">
+    <set >
+      <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.imgpath != null">
+      <if test="record.imgpath != null" >
         imgPath = #{record.imgpath,jdbcType=VARCHAR},
       </if>
-      <if test="record.imgname != null">
+      <if test="record.imgname != null" >
         imgName = #{record.imgname,jdbcType=VARCHAR},
       </if>
-      <if test="record.userid != null">
+      <if test="record.userid != null" >
         userId = #{record.userid,jdbcType=VARCHAR},
       </if>
-      <if test="record.journeyid != null">
+      <if test="record.journeyid != null" >
         journeyId = #{record.journeyid,jdbcType=VARCHAR},
       </if>
-      <if test="record.createdat != null">
+      <if test="record.createdat != null" >
         createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updatedat != null">
+      <if test="record.updatedat != null" >
         updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.flag != null">
+      <if test="record.flag != null" >
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
-      <if test="record.desc != null">
+      <if test="record.desc != null" >
         `desc` = #{record.desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
     update photograph
     set id = #{record.id,jdbcType=VARCHAR},
       imgPath = #{record.imgpath,jdbcType=VARCHAR},
@@ -249,11 +249,11 @@
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER},
       `desc` = #{record.desc,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update photograph
     set id = #{record.id,jdbcType=VARCHAR},
       imgPath = #{record.imgpath,jdbcType=VARCHAR},
@@ -263,41 +263,41 @@
       createdAt = #{record.createdat,jdbcType=TIMESTAMP},
       updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
       flag = #{record.flag,jdbcType=INTEGER}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.Photograph">
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.Photograph" >
     update photograph
-    <set>
-      <if test="imgpath != null">
+    <set >
+      <if test="imgpath != null" >
         imgPath = #{imgpath,jdbcType=VARCHAR},
       </if>
-      <if test="imgname != null">
+      <if test="imgname != null" >
         imgName = #{imgname,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         userId = #{userid,jdbcType=VARCHAR},
       </if>
-      <if test="journeyid != null">
+      <if test="journeyid != null" >
         journeyId = #{journeyid,jdbcType=VARCHAR},
       </if>
-      <if test="createdat != null">
+      <if test="createdat != null" >
         createdAt = #{createdat,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedat != null">
+      <if test="updatedat != null" >
         updatedAt = #{updatedat,jdbcType=TIMESTAMP},
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         flag = #{flag,jdbcType=INTEGER},
       </if>
-      <if test="desc != null">
+      <if test="desc != null" >
         `desc` = #{desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.Photograph">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.Photograph" >
     update photograph
     set imgPath = #{imgpath,jdbcType=VARCHAR},
       imgName = #{imgname,jdbcType=VARCHAR},
@@ -309,326 +309,7 @@
       `desc` = #{desc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Photograph">
-    update photograph
-    set imgPath = #{imgpath,jdbcType=VARCHAR},
-      imgName = #{imgname,jdbcType=VARCHAR},
-      userId = #{userid,jdbcType=VARCHAR},
-      journeyId = #{journeyid,jdbcType=VARCHAR},
-      createdAt = #{createdat,jdbcType=TIMESTAMP},
-      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      flag = #{flag,jdbcType=INTEGER}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <resultMap id="BaseResultMap" type="com.nju.mj.journey.entity.Photograph">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="imgPath" jdbcType="VARCHAR" property="imgpath" />
-    <result column="imgName" jdbcType="VARCHAR" property="imgname" />
-    <result column="userId" jdbcType="VARCHAR" property="userid" />
-    <result column="journeyId" jdbcType="VARCHAR" property="journeyid" />
-    <result column="createdAt" jdbcType="TIMESTAMP" property="createdat" />
-    <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedat" />
-    <result column="flag" jdbcType="INTEGER" property="flag" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.nju.mj.journey.entity.Photograph">
-    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, imgPath, imgName, userId, journeyId, createdAt, updatedAt, flag
-  </sql>
-  <sql id="Blob_Column_List">
-    `desc`
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.nju.mj.journey.entity.PhotographExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from photograph
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from photograph
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from photograph
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from photograph
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.nju.mj.journey.entity.PhotographExample">
-    delete from photograph
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.nju.mj.journey.entity.Photograph">
-    insert into photograph (id, imgPath, imgName, 
-      userId, journeyId, createdAt, 
-      updatedAt, flag, `desc`
-      )
-    values (#{id,jdbcType=VARCHAR}, #{imgpath,jdbcType=VARCHAR}, #{imgname,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=VARCHAR}, #{journeyid,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, 
-      #{updatedat,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{desc,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.nju.mj.journey.entity.Photograph">
-    insert into photograph
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="imgpath != null">
-        imgPath,
-      </if>
-      <if test="imgname != null">
-        imgName,
-      </if>
-      <if test="userid != null">
-        userId,
-      </if>
-      <if test="journeyid != null">
-        journeyId,
-      </if>
-      <if test="createdat != null">
-        createdAt,
-      </if>
-      <if test="updatedat != null">
-        updatedAt,
-      </if>
-      <if test="flag != null">
-        flag,
-      </if>
-      <if test="desc != null">
-        `desc`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="imgpath != null">
-        #{imgpath,jdbcType=VARCHAR},
-      </if>
-      <if test="imgname != null">
-        #{imgname,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="journeyid != null">
-        #{journeyid,jdbcType=VARCHAR},
-      </if>
-      <if test="createdat != null">
-        #{createdat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedat != null">
-        #{updatedat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=INTEGER},
-      </if>
-      <if test="desc != null">
-        #{desc,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.nju.mj.journey.entity.PhotographExample" resultType="java.lang.Integer">
-    select count(*) from photograph
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update photograph
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.imgpath != null">
-        imgPath = #{record.imgpath,jdbcType=VARCHAR},
-      </if>
-      <if test="record.imgname != null">
-        imgName = #{record.imgname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userid != null">
-        userId = #{record.userid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.journeyid != null">
-        journeyId = #{record.journeyid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createdat != null">
-        createdAt = #{record.createdat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updatedat != null">
-        updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.flag != null">
-        flag = #{record.flag,jdbcType=INTEGER},
-      </if>
-      <if test="record.desc != null">
-        `desc` = #{record.desc,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update photograph
-    set id = #{record.id,jdbcType=VARCHAR},
-      imgPath = #{record.imgpath,jdbcType=VARCHAR},
-      imgName = #{record.imgname,jdbcType=VARCHAR},
-      userId = #{record.userid,jdbcType=VARCHAR},
-      journeyId = #{record.journeyid,jdbcType=VARCHAR},
-      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
-      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
-      flag = #{record.flag,jdbcType=INTEGER},
-      `desc` = #{record.desc,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update photograph
-    set id = #{record.id,jdbcType=VARCHAR},
-      imgPath = #{record.imgpath,jdbcType=VARCHAR},
-      imgName = #{record.imgname,jdbcType=VARCHAR},
-      userId = #{record.userid,jdbcType=VARCHAR},
-      journeyId = #{record.journeyid,jdbcType=VARCHAR},
-      createdAt = #{record.createdat,jdbcType=TIMESTAMP},
-      updatedAt = #{record.updatedat,jdbcType=TIMESTAMP},
-      flag = #{record.flag,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nju.mj.journey.entity.Photograph">
-    update photograph
-    <set>
-      <if test="imgpath != null">
-        imgPath = #{imgpath,jdbcType=VARCHAR},
-      </if>
-      <if test="imgname != null">
-        imgName = #{imgname,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="journeyid != null">
-        journeyId = #{journeyid,jdbcType=VARCHAR},
-      </if>
-      <if test="createdat != null">
-        createdAt = #{createdat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedat != null">
-        updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        flag = #{flag,jdbcType=INTEGER},
-      </if>
-      <if test="desc != null">
-        `desc` = #{desc,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nju.mj.journey.entity.Photograph">
-    update photograph
-    set imgPath = #{imgpath,jdbcType=VARCHAR},
-      imgName = #{imgname,jdbcType=VARCHAR},
-      userId = #{userid,jdbcType=VARCHAR},
-      journeyId = #{journeyid,jdbcType=VARCHAR},
-      createdAt = #{createdat,jdbcType=TIMESTAMP},
-      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      flag = #{flag,jdbcType=INTEGER},
-      `desc` = #{desc,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Photograph">
+  <update id="updateByPrimaryKey" parameterType="com.nju.mj.journey.entity.Photograph" >
     update photograph
     set imgPath = #{imgpath,jdbcType=VARCHAR},
       imgName = #{imgname,jdbcType=VARCHAR},
