@@ -2,6 +2,7 @@ package com.nju.mj.journey.service.impl;
 
 import com.nju.mj.journey.dao.ParticipantMapper;
 import com.nju.mj.journey.entity.Participant;
+import com.nju.mj.journey.entity.ParticipantExample;
 import com.nju.mj.journey.service.ParticipantService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,5 +30,17 @@ public class ParticipantServiceImp implements ParticipantService {
         participant.setCreatedat(new Date());
         participant.setUpdatedat(new Date());
         participantMapper.insertSelective(participant);
+    }
+
+    @Override
+    public List<Participant> findByCondition(String userId, String journeyId) {
+        ParticipantExample participantExample = new ParticipantExample();
+        ParticipantExample.Criteria criteria = participantExample.createCriteria();
+        if(userId!=null)
+            criteria.andUseridEqualTo(userId);
+        if(journeyId!=null)
+            criteria.andJourneyidEqualTo(journeyId);
+        List<Participant> participants = participantMapper.selectByExampleWithBLOBs(participantExample);
+        return participants;
     }
 }
