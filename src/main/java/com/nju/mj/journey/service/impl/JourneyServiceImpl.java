@@ -166,7 +166,7 @@ public class JourneyServiceImpl implements JourneyService {
         JourneyExample.Criteria journeyCriteria = journeyExample.createCriteria();
         journeyCriteria.andFlagEqualTo(1).andIsfindEqualTo(0).andIspublicEqualTo(1);
         journeyExample.setOrderByClause("createdAt");
-        List<Journey> journeys = journeyMapper.selectByExample(journeyExample);
+        List<Journey> journeys = journeyMapper.selectByExampleWithBLOBs(journeyExample);
         for(Journey journey:journeys){
             String sponsorId = journey.getSponsorid();
             JourneyUser sponsorUser = journeyUserMapper.selectByPrimaryKey(sponsorId);
