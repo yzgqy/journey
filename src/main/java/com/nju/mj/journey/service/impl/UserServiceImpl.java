@@ -4,7 +4,7 @@ import com.nju.mj.journey.dao.JourneyUserMapper;
 import com.nju.mj.journey.entity.JourneyUser;
 import com.nju.mj.journey.entity.JourneyUserExample;
 import com.nju.mj.journey.service.UserService;
-import org.n3r.idworker.Sid;
+import com.nju.mj.journey.utils.Myuuid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +17,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private JourneyUserMapper journeyUserMapper;
-    @Autowired
-    private Sid sid;
+//    @Autowired
+//    private Sid sid;
 
     @Override
     public void addUser(JourneyUser user) {
-        String id = sid.nextShort();
+        String id = Myuuid.getUUID();
         user.setId(id);
         user.setFlag(1);
         user.setUpdatedat(new Date());
@@ -75,6 +75,24 @@ public class UserServiceImpl implements UserService {
             updatedUser(user);
         }else {
             addUser(user);
+        }
+    }
+
+    @Override
+    public JourneyUser login(String nickname) {
+        //查询 用户
+        JourneyUserExample userExample = new JourneyUserExample();
+        JourneyUserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andNicknameEqualTo(nickname);
+        List<JourneyUser> users = journeyUserMapper.selectByExample(userExample);
+        if(users!=null && users.size()>0)
+            return users.get(0);//存在返回用户信息
+        else{
+            //不存在新建，并返回
+            JourneyUser user = new JourneyUser();
+            user.setNickname(nickname);
+            addUser(user);
+            return  user;
         }
     }
 

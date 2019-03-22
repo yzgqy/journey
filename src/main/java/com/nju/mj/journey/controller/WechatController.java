@@ -3,19 +3,16 @@ package com.nju.mj.journey.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.nju.mj.journey.entity.Journey;
 import com.nju.mj.journey.entity.JourneyUser;
 import com.nju.mj.journey.entity.bean.WXSessionModel;
 import com.nju.mj.journey.entity.common.JSONResult;
 import com.nju.mj.journey.service.UserService;
 import com.nju.mj.journey.utils.HttpClientUtil;
 import com.nju.mj.journey.utils.JsonUtils;
-//import com.nju.mj.journey.utils.RedisOperator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 
 @RestController
 public class WechatController {
@@ -62,4 +59,6 @@ public class WechatController {
 
         return JSONResult.ok(userNew);
     }
+
+
 }

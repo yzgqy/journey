@@ -33,4 +33,12 @@ public class UserController {
         JourneyUser journeyUser = userService.findUserByOpenid(openId);
         return JSONResult.ok(journeyUser);
     }
+
+    @RequestMapping(value = "/user/nickname/{nickname}", method = RequestMethod.GET)
+    public JSONResult login(@PathVariable  String nickname){
+        JourneyUser journeyUser = userService.login(nickname);
+        return JSONResult.ok(journeyUser);
+    }
+
+
 }

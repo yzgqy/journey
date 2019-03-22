@@ -2,7 +2,7 @@ package com.nju.mj.journey.controller;
 
 import com.nju.mj.journey.dao.JourneyUserMapper;
 import com.nju.mj.journey.entity.JourneyUser;
-import org.n3r.idworker.Sid;
+import com.nju.mj.journey.utils.Myuuid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +18,13 @@ import java.util.HashMap;
 public class TestController {
     @Autowired
     private JourneyUserMapper journeyUserMapper;
-    @Autowired
-    private Sid sid;
+//    @Autowired
+//    private Sid sid;
 
     @RequestMapping(value = "/addUser",method = RequestMethod.GET)
     public HashMap<String,Object> getTest() {
         HashMap<String,Object> result = new HashMap<String,Object>();
-        String id = sid.nextShort();
+        String id = Myuuid.getUUID();
         JourneyUser user = new JourneyUser();
         user.setCity("yz");
         user.setCreatedat(new Date());

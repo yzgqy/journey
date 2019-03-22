@@ -9,4 +9,5 @@ public interface UserService {
     public JourneyUser findUserByOpenid(String openId);
     public void updatedUserByOpenid(JourneyUser user);
     public void addWechatUser(JourneyUser user);
+    public JourneyUser login(String nickname);
 }

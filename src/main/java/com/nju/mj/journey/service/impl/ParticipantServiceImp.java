@@ -4,7 +4,7 @@ import com.nju.mj.journey.dao.ParticipantMapper;
 import com.nju.mj.journey.entity.Participant;
 import com.nju.mj.journey.entity.ParticipantExample;
 import com.nju.mj.journey.service.ParticipantService;
-import org.n3r.idworker.Sid;
+import com.nju.mj.journey.utils.Myuuid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +17,11 @@ import java.util.List;
 public class ParticipantServiceImp implements ParticipantService {
     @Autowired
     private ParticipantMapper participantMapper;
-    @Autowired
-    private Sid sid;
+//    @Autowired
+//    private Sid sid;
     @Override
     public void addParticipant(Participant participant) {
-        String participantId = sid.nextShort();
+        String participantId = Myuuid.getUUID();
         participant.setId(participantId);
         participant.setIsarrived(0);
         participant.setIshome(0);

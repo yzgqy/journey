@@ -7,7 +7,7 @@ import com.nju.mj.journey.dao.SchedulingMapper;
 import com.nju.mj.journey.entity.*;
 import com.nju.mj.journey.entity.bean.JourneyBean;
 import com.nju.mj.journey.service.JourneyService;
-import org.n3r.idworker.Sid;
+import com.nju.mj.journey.utils.Myuuid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +19,8 @@ import java.util.List;
 @Service
 @Transactional
 public class JourneyServiceImpl implements JourneyService {
-    @Autowired
-    private Sid sid;
+//    @Autowired
+//    private Sid sid;
     @Autowired
     private JourneyMapper journeyMapper;
     @Autowired
@@ -32,7 +32,7 @@ public class JourneyServiceImpl implements JourneyService {
 
     @Override
     public void addJourney(Journey journey, List<Scheduling> schedulings) {
-        String id = sid.nextShort();
+        String id = Myuuid.getUUID();
         journey.setId(id);
         journey.setFlag(1);
         journey.setCreatedat(new Date());
@@ -40,7 +40,7 @@ public class JourneyServiceImpl implements JourneyService {
         journeyMapper.insertSelective(journey);
 
         for (Scheduling scheduling : schedulings) {
-            String schedulingId = sid.nextShort();
+            String schedulingId = Myuuid.getUUID();
             scheduling.setId(schedulingId);
             scheduling.setJourneyid(id);
             scheduling.setCreatedat(new Date());
@@ -50,7 +50,7 @@ public class JourneyServiceImpl implements JourneyService {
             schedulingMapper.insertSelective(scheduling);
         }
         Participant participant =new Participant();
-        String participantId = sid.nextShort();
+        String participantId = Myuuid.getUUID();
         participant.setId(participantId);
         participant.setIsarrived(0);
         participant.setIshome(0);
@@ -75,7 +75,7 @@ public class JourneyServiceImpl implements JourneyService {
         schedulingMapper.deleteByExample(schedulingExample);
 
         for (Scheduling scheduling : schedulings) {
-            String schedulingId = sid.nextShort();
+            String schedulingId = Myuuid.getUUID();
             scheduling.setId(schedulingId);
             scheduling.setJourneyid(journey.getId());
             scheduling.setCreatedat(new Date());
