@@ -126,7 +126,7 @@ public class JourneyServiceImpl implements JourneyService {
         journeyExample.setOrderByClause("createdAt DESC");
         JourneyExample.Criteria jc = journeyExample.createCriteria();
         jc.andCodeEqualTo(code);
-        List<Journey> journeyList = journeyMapper.selectByExample(journeyExample);
+        List<Journey> journeyList = journeyMapper.selectByExampleWithBLOBs(journeyExample);
         return journeyList;
     }
 
