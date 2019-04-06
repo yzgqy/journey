@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 @Transactional
 public class JourneyServiceImpl implements JourneyService {
-//    @Autowired
+    //    @Autowired
 //    private Sid sid;
     @Autowired
     private JourneyMapper journeyMapper;
@@ -33,7 +33,7 @@ public class JourneyServiceImpl implements JourneyService {
     @Override
     public void addJourney(Journey journey, List<Scheduling> schedulings) {
         String id = Myuuid.getUUID();
-        String code = id.substring(0,4);
+        String code = id.substring(0, 4);
         journey.setId(id);
         journey.setFlag(1);
         journey.setCreatedat(new Date());
@@ -51,7 +51,7 @@ public class JourneyServiceImpl implements JourneyService {
             scheduling.setIsfinished(0);
             schedulingMapper.insertSelective(scheduling);
         }
-        Participant participant =new Participant();
+        Participant participant = new Participant();
         String participantId = Myuuid.getUUID();
         participant.setId(participantId);
         participant.setIsarrived(0);
@@ -106,17 +106,18 @@ public class JourneyServiceImpl implements JourneyService {
         participantCriteria.andJourneyidEqualTo(journey.getId());
         List<Participant> participantList = participantMapper.selectByExample(participantExample);
 
-        for(Participant participant:participantList){
+        for (Participant participant : participantList) {
             String userId = participant.getUserid();
             JourneyUser participantUser = journeyUserMapper.selectByPrimaryKey(userId);
-            participant.setUserid(participantUser.getNickname());
+            if (participantUser != null)
+                participant.setUserid(participantUser.getNickname());
         }
 
         JourneyBean journeyBean = new JourneyBean();
         journeyBean.setJourney(journey);
         journeyBean.setSchedulingList(schedulingList);
         journeyBean.setParticipantList(participantList);
-        return  journeyBean;
+        return journeyBean;
     }
 
     @Override
@@ -153,18 +154,18 @@ public class JourneyServiceImpl implements JourneyService {
         participantCriteria.andUseridEqualTo(userId);
         participantExample.setOrderByClause("createdAt");
         List<Participant> participantList = participantMapper.selectByExample(participantExample);
-        for(Participant participant:participantList){
+        for (Participant participant : participantList) {
             Journey journey = journeyMapper.selectByPrimaryKey(participant.getJourneyid());
-            if(flag == 0 && journey.getFlag() == 1 && journey.getIsfind() == 0 &&journey.getIspublic() == 1){
+            if (flag == 0 && journey.getFlag() == 1 && journey.getIsfind() == 0 && journey.getIspublic() == 1) {
                 journeyList.add(journey);
-            }else if(flag == 1 && journey.getFlag() == 1 && journey.getIsfind() == 1 &&journey.getIspublic() == 1){
+            } else if (flag == 1 && journey.getFlag() == 1 && journey.getIsfind() == 1 && journey.getIspublic() == 1) {
                 journeyList.add(journey);
-            }else if(flag == 2 && journey.getFlag() == 1  &&journey.getIspublic() == 1){
+            } else if (flag == 2 && journey.getFlag() == 1 && journey.getIspublic() == 1) {
                 journeyList.add(journey);
             }
         }
 
-        for(Journey journey:journeyList){
+        for (Journey journey : journeyList) {
             String sponsorId = journey.getSponsorid();
             JourneyUser sponsorUser = journeyUserMapper.selectByPrimaryKey(sponsorId);
             journey.setSponsorid(sponsorUser.getNickname());
@@ -180,7 +181,7 @@ public class JourneyServiceImpl implements JourneyService {
         journeyCriteria.andFlagEqualTo(1).andIsfindEqualTo(0).andIspublicEqualTo(1);
         journeyExample.setOrderByClause("createdAt DESC");
         List<Journey> journeys = journeyMapper.selectByExampleWithBLOBs(journeyExample);
-        for(Journey journey:journeys){
+        for (Journey journey : journeys) {
             String sponsorId = journey.getSponsorid();
             JourneyUser sponsorUser = journeyUserMapper.selectByPrimaryKey(sponsorId);
             journey.setSponsorid(sponsorUser.getNickname());
@@ -197,7 +198,7 @@ public class JourneyServiceImpl implements JourneyService {
         ParticipantExample participantExample = new ParticipantExample();
         ParticipantExample.Criteria participantCriteria = participantExample.createCriteria();
         participantCriteria.andUseridEqualTo(userId).andJourneyidEqualTo(journeyId);
-        participantMapper.updateByExampleSelective(participant,participantExample);
+        participantMapper.updateByExampleSelective(participant, participantExample);
 
     }
 
@@ -210,7 +211,7 @@ public class JourneyServiceImpl implements JourneyService {
         ParticipantExample participantExample = new ParticipantExample();
         ParticipantExample.Criteria participantCriteria = participantExample.createCriteria();
         participantCriteria.andUseridEqualTo(userId).andJourneyidEqualTo(journeyId);
-        participantMapper.updateByExampleSelective(participant,participantExample);
+        participantMapper.updateByExampleSelective(participant, participantExample);
     }
 
     @Override
@@ -222,7 +223,7 @@ public class JourneyServiceImpl implements JourneyService {
         ParticipantExample participantExample = new ParticipantExample();
         ParticipantExample.Criteria participantCriteria = participantExample.createCriteria();
         participantCriteria.andUseridEqualTo(userId).andJourneyidEqualTo(journeyId);
-        participantMapper.updateByExampleSelective(participant,participantExample);
+        participantMapper.updateByExampleSelective(participant, participantExample);
     }
 
 //    @Override
