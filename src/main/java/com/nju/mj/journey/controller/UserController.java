@@ -15,8 +15,8 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public JSONResult addUser(@RequestBody JourneyUser user){
-        userService.addUser(user);
-        return JSONResult.ok();
+        String id = userService.addUser(user);
+        return JSONResult.ok(id);
     }
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public JSONResult updatedUser(@RequestBody JourneyUser user){

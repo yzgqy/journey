@@ -39,6 +39,12 @@ public class JourneyController {
         return JSONResult.ok(journeyBean);
     }
 
+    @RequestMapping(value = "/journey/code/{code}", method = RequestMethod.GET)
+    public JSONResult findByCode(@PathVariable String code) {
+        List<Journey> journeyList = journeyService.findByCode(code);
+        return JSONResult.ok(journeyList);
+    }
+
     @RequestMapping(value = "/journey", method = RequestMethod.GET)
     public JSONResult findByCondition(String userId, Integer flag) {
         List<Journey> journeyList = new ArrayList<>();

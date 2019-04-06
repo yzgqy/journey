@@ -10,6 +10,7 @@ public interface JourneyService {
     public void addJourney(Journey journey, List<Scheduling> schedulings);
     public void updateJourney(Journey journey, List<Scheduling> schedulings);
     public JourneyBean findByJourneyId(String journeyId);
+    public List<Journey> findByCode(String code);
     public List<Journey> findByCondition(String userId,int flag);
     public List<Journey> findAllByCondition();
     public void confirmHome(String userId,String journeyId);

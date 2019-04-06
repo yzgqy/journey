@@ -33,10 +33,12 @@ public class JourneyServiceImpl implements JourneyService {
     @Override
     public void addJourney(Journey journey, List<Scheduling> schedulings) {
         String id = Myuuid.getUUID();
+        String code = id.substring(0,4);
         journey.setId(id);
         journey.setFlag(1);
         journey.setCreatedat(new Date());
         journey.setUpdatedat(new Date());
+        journey.setCode(code);
         journeyMapper.insertSelective(journey);
 
         for (Scheduling scheduling : schedulings) {
@@ -118,6 +120,16 @@ public class JourneyServiceImpl implements JourneyService {
     }
 
     @Override
+    public List<Journey> findByCode(String code) {
+        JourneyExample journeyExample = new JourneyExample();
+        journeyExample.setOrderByClause("createdAt DESC");
+        JourneyExample.Criteria jc = journeyExample.createCriteria();
+        jc.andCodeEqualTo(code);
+        List<Journey> journeyList = journeyMapper.selectByExample(journeyExample);
+        return journeyList;
+    }
+
+    @Override
     public List<Journey> findByCondition(String userId, int flag) {
 //        flag:0-正在参与的；1-结束了的；2-所有的
 
@@ -163,9 +175,10 @@ public class JourneyServiceImpl implements JourneyService {
     @Override
     public List<Journey> findAllByCondition() {
         JourneyExample journeyExample = new JourneyExample();
+//        journeyExample.setOrderByClause("createdAt DESC");
         JourneyExample.Criteria journeyCriteria = journeyExample.createCriteria();
         journeyCriteria.andFlagEqualTo(1).andIsfindEqualTo(0).andIspublicEqualTo(1);
-        journeyExample.setOrderByClause("createdAt");
+        journeyExample.setOrderByClause("createdAt DESC");
         List<Journey> journeys = journeyMapper.selectByExampleWithBLOBs(journeyExample);
         for(Journey journey:journeys){
             String sponsorId = journey.getSponsorid();

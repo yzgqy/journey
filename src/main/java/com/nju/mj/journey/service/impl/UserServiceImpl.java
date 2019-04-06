@@ -21,13 +21,14 @@ public class UserServiceImpl implements UserService {
 //    private Sid sid;
 
     @Override
-    public void addUser(JourneyUser user) {
+    public String addUser(JourneyUser user) {
         String id = Myuuid.getUUID();
         user.setId(id);
         user.setFlag(1);
         user.setUpdatedat(new Date());
         user.setCreatedat(new Date());
         journeyUserMapper.insertSelective(user);
+        return id;
     }
 
     @Override
